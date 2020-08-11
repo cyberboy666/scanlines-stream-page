@@ -31,10 +31,8 @@
      <input type="text" id="streamkey" name="streamkey">
      <button id="update">update</button>
    </div>
-   <div>
-     <button id="show-twitch">show twitch streams</button>
-   </div>
  <hr class="solid" id="divider-before">
+ <button id="show-twitch">show twitch streams</button>
  <hr class="solid" id="divider-after">
    
   <script>
@@ -57,6 +55,7 @@
       var input = document.getElementById('streamkey').value;
       myPlayer.src(`https://chat.scanlines.xyz/live/${input}.m3u8`);
   }
+  );
   document.getElementById("show-twitch").addEventListener("click", function(){
       shuffle(twitch_channels).forEach(function(item, index){
           var embed = document.createElement("iframe");
