@@ -39,14 +39,9 @@
    
   <script>
    var myPlayer = videojs('my-video');
-   myPlayer.ready(function(){
-  var myPlayer = this;
-  if(myPlayer.error_){
-  console.log("there is no video on scanlines right now");
-  }
-  else{
-  console.log("now streaming !");
-  myPlayer.play();
+   myPlayer.on('error', function(){
+   document.querySelector('div.vjs-modal-dialog-content').innerText = 'there is no video on scanlines stream right now'
+   console.log("there is no video on scanlines right now");
   }
 });
   </script>
