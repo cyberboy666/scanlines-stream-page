@@ -29,11 +29,8 @@
  <form>
    <div>
      <label for="streamkey">streamkey: </label>
-     <input type="text" id="streamkey" name="name">
-     <button>Submit</button>
-   </div>
-   <div>
-     
+     <input type="text" id="streamkey" name="streamkey">
+     <button>update</button>
    </div>
  </form>
   <div>
@@ -50,13 +47,13 @@
   <script>
    var myPlayer = videojs('my-video');
    myPlayer.on('error', function(){
-   document.querySelector('div.vjs-modal-dialog-content').innerText = 'there is no video on scanlines stream right now';
-   console.log("there is no video on scanlines right now");
+   document.querySelector('div.vjs-modal-dialog-content').innerText = 'there is no video on this scanlines stream right now';
   }
   );
   document.querySelector("form").addEventListener("submit", function(e){
         e.preventDefault();    //stop form from submitting
-        myPlayer.src(`https://chat.scanlines.xyz/live/%{e}.m3u8`);
+        var input = document.getElementById('streamkey').value;
+        myPlayer.src(`https://chat.scanlines.xyz/live/%{input}.m3u8`);
   }
   );
   </script>
