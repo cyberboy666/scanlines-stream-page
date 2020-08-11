@@ -16,6 +16,7 @@
     preload="auto"
     width="900"
     height="500"
+    loadingSpinner: false
     poster="https://scanlines.xyz/uploads/default/original/1X/b860e19023d75379217e622d08fe1670d397b769.jpeg"
     data-setup="{}"
   >
@@ -31,9 +32,11 @@
      <input type="text" id="streamkey" name="streamkey">
      <button id="update">update</button>
    </div>
- <hr class="solid" id="divider-before">
- <button id="show-twitch">show twitch streams</button>
- <hr class="solid" id="divider-after">
+   <div id="twitch-block">
+   <hr class="solid" id="divider-before">
+   <button id="show-twitch">show twitch streams</button>
+   <hr class="solid" id="divider-after">
+   </div>
    
   <script>
    var twitch_channels = ['bobbypharaoh', 'andrei_jay', 'cinema_av'];
@@ -57,18 +60,22 @@
   }
   );
   document.getElementById("show-twitch").addEventListener("click", function(){
-      shuffle(twitch_channels).forEach(function(item, index){
-          var embed = document.createElement("iframe");
-          embed.setAttribute('src', `https://player.twitch.tv/?channel=${item}&parent=cyberboy666.com`);
-          embed.setAttribute('class', 'twitch_iframe');
-          embed.setAttribute('width', '100%');
-          embed.setAttribute('frameborder', 'none');
-          embed.setAttribute('scrolling', 'no');
-          embed.setAttribute('allowfullscreen', 'true');
-          var divider = document.getElementById("divider-after"); 
-          divider.parentNode.insertBefore(embed, divider); 
-      }
-     );
+      var twitch_block = document.getElementById("twitch-block");
+      console.log(twitch_block.childElementCount);
+          if(twitch_block.childElementCount == 0){
+              shuffle(twitch_channels).forEach(function(item, index){
+                  var embed = document.createElement("iframe");
+                  embed.setAttribute('src', `https://player.twitch.tv/?channel=${item}&parent=cyberboy666.com`);
+                  embed.setAttribute('class', 'twitch_iframe');
+                  embed.setAttribute('width', '100%');
+                  embed.setAttribute('frameborder', 'none');
+                  embed.setAttribute('scrolling', 'no');
+                  embed.setAttribute('allowfullscreen', 'true');
+                  var divider = document.getElementById("divider-after"); 
+                  divider.parentNode.insertBefore(embed, divider); 
+              }
+             );
+          }
   }
   );
   </script>
