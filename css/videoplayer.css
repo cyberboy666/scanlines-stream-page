@@ -1344,6 +1344,8 @@ video::-webkit-media-text-track-display {
   width: 100%;
 }
 
+.vjs-loading-spinner{display:none!important;}
+
 .vjs-loading-spinner {
   display: none;
   position: absolute;
