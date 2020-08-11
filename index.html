@@ -26,6 +26,16 @@
     </p>
   </video>
   </div>
+ <form>
+   <div>
+     <label for="streamkey">streamkey: </label>
+     <input type="text" id="streamkey" name="name">
+     <button>Submit</button>
+   </div>
+   <div>
+     
+   </div>
+ </form>
   <div>
     <iframe
        src="https://player.twitch.tv/?channel=bobbypharaoh&parent=cyberboy666.com"
@@ -44,6 +54,11 @@
    console.log("there is no video on scanlines right now");
   }
   );
+  document.querySelector("form").addEventListener("submit", function(e){
+        e.preventDefault();    //stop form from submitting
+        myPlayer.src(`https://chat.scanlines.xyz/live/%{e}.m3u8`)
+    }
+});
   </script>
  </body>
 
