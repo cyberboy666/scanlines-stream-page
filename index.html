@@ -2,7 +2,12 @@
 ---
 <!doctype html>
 <html>
- <div class="stream_embed">
+ <head>
+  <script src="https://vjs.zencdn.net/7.7.6/video.js"></script>
+  <link href='./css/videoplayer.css' rel='stylesheet' type='text/css'>
+ </head>
+ <body>
+   <div class="stream_embed">
   <video
     autoplay
     id="my-video"
@@ -21,6 +26,18 @@
     </p>
   </video>
   </div>
+  <div>
+    <iframe
+       src="https://player.twitch.tv/?channel=bobbypharaoh&parent=scanlines.xyz"
+       class="twitch_iframe"
+       width="100%"
+       frameborder="none"
+       scrolling="no"
+       allowfullscreen="true">
+   </iframe>
+ </div>
+ </body>
 
-  <script src="https://vjs.zencdn.net/7.7.6/video.js"></script>
+
+  
 </html>
