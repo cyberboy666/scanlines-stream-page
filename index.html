@@ -26,13 +26,14 @@
     </p>
   </video>
   </div>
- <form>
    <div>
      <label for="streamkey">streamkey: </label>
      <input type="text" id="streamkey" name="streamkey">
-     <button>update</button>
+     <button id="update">update</button>
    </div>
- </form>
+   <div>
+     <button id="show-twitch">show twitch streams</button>
+   </div>
   <div>
     <iframe
        src="https://player.twitch.tv/?channel=bobbypharaoh&parent=cyberboy666.com"
@@ -43,18 +44,42 @@
        allowfullscreen="true">
    </iframe>
  </div>
+ <hr class="solid" id="divider-before">
+ <hr class="solid" id="divider-after">
    
   <script>
+   var twitch_channels = ['bobbypharaoh', 'andrei_jay', 'cinema_av'];
+   
+   function shuffle(a) {
+       for (let i = a.length - 1; i > 0; i--) {
+           const j = Math.floor(Math.random() * (i + 1));
+           [a[i], a[j]] = [a[j], a[i]];
+       }
+       return a;
+   }
+   
    var myPlayer = videojs('my-video');
    myPlayer.on('error', function(){
-   document.querySelector('div.vjs-modal-dialog-content').innerText = 'there is no video on this scanlines stream right now';
+       document.querySelector('div.vjs-modal-dialog-content').innerText = 'there is no video on this scanlines stream right now';
   }
   );
-  document.querySelector("form").addEventListener("submit", function(e){
-        e.preventDefault();    //stop form from submitting
-        var input = document.getElementById('streamkey').value;
-        myPlayer.src(`https://chat.scanlines.xyz/live/${input}.m3u8`);
+  document.getElementById("update").addEventListener("click", function(){
+      var input = document.getElementById('streamkey').value;
+      myPlayer.src(`https://chat.scanlines.xyz/live/${input}.m3u8`);
   }
+  document.getElementById("show-twitch").addEventListener("click", function(){
+      shuffle(twitch_channels).forEach(function(item, index){
+          var embed = document.createElement("iframe");
+          embed.setAttribute('src', `https://player.twitch.tv/?channel=${item}&parent=cyberboy666.com`);
+          embed.setAttribute('class', 'twitch_iframe');
+          embed.setAttribute('width', '100%');
+          embed.setAttribute('frameborder', 'none');
+          embed.setAttribute('scrolling', 'no');
+          embed.setAttribute('allowfullscreen', 'true');
+          var divider = document.getElementById("divider-after"); 
+          divider.parentNode.insertBefore(embed, divider); 
+      }
+     );
   );
   </script>
  </body>
